@@ -10,6 +10,7 @@ winget install Discord.Discord
 winget install RamenSoftware.Windhawk
 
 # Terminal and shell
+winget install win32yank
 winget install Notepad++.Notepad++
 winget install Microsoft.WindowsTerminal
 winget install Starship.Starship
