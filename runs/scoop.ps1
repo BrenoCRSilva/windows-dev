@@ -1,13 +1,20 @@
 #!/usr/bin/env powershell
 
-Write-Host "Installing applications via winget..."
+Write-Host "Installing Scoop and tools..."
 
-# Browsers
-winget install Google.Chrome
-winget install Discord.Discord
+# Install Scoop if not present
+if (!(Get-Command scoop -ErrorAction SilentlyContinue)) {
+    Set-ExecutionPolicy RemoteSigned -Scope CurrentUser -Force
+    Invoke-RestMethod get.scoop.sh | Invoke-Expression
+}
 
-# Terminal and shell
-winget install Microsoft.WindowsTerminal
-winget install Starship.Starship
+# Add required buckets
+scoop bucket add extras
 
-Write-Host "Winget installations complete!"
+# Window management stack
+scoop install wezterm
+scoop install kanata
+scoop install komorebi
+scoop install yasb
+
+Write-Host "Scoop installations complete!"
