@@ -1,0 +1,381 @@
+* {
+	font-size: 12px;
+	color: #e0def4;
+	font-weight: 500;
+	font-family: "JetBrainsMono NFP";
+	margin: 0;
+	padding: 0;
+}
+.yasb-bar {
+	padding: 0;
+	margin: 0;
+}
+.widget {
+	background-color: #191724;
+	padding: 0px 8px;
+	margin: 0;
+}
+.widget .label {
+	padding: 1px 2px 1px 2px;
+}
+.widget .label.alt {
+	padding: 1px 8px 1px 8px;
+}
+.active-window-widget {
+	font-size: 14px;
+	border-top-right-radius: 9px;
+	border-bottom-right-radius: 9px;
+	padding: 0 9px 0 9px;
+}
+
+.active-window-widget .label{
+	font-size: 16px;
+	padding: 0;
+}
+	
+.container-left,
+.container-center,
+.container-right {
+	margin: 0;
+	padding: 0;
+}
+
+.clock-widget {
+	border-top-right-radius: 9px;
+	border-bottom-right-radius: 9px;
+}
+.power-menu-widget {
+	padding: 0 8px 0 12px;
+	border-top-left-radius: 9px;
+	border-bottom-left-radius: 9px;
+	margin: 0 0 0 4px;
+}
+.apps-widget {
+	padding: 2px 2px;
+	border-top-right-radius: 18px;
+	border-bottom-right-radius: 18px;
+}
+.komorebi-active-layout {
+	border-top-right-radius: 18px;
+	border-bottom-right-radius: 18px;
+}
+
+.komorebi-active-layout .label {
+	font-weight: 600;
+	padding: 0 0 0 0;
+}
+.wifi-widget {
+	padding: 0 -8px 0 4px;
+}
+
+.komorebi-workspaces {
+	border-top-left-radius: 9px;
+	border-bottom-left-radius: 9px;
+	padding: 0 4px 0 4px;
+}
+.disk-widget {
+	padding: 0 6px 0 8px;
+}
+.apps-widget .widget-container,
+.komorebi-workspaces .widget-container,
+.komorebi-active-layout .widget-container {
+	background-color: #26233a;
+	margin: 4px 0px 4px 0px;
+	border-top-left-radius: 7px;
+	border-bottom-left-radius: 7px;
+	border-top-right-radius: 7px;
+	border-bottom-right-radius: 7px;
+}
+.apps-widget .widget-container {
+    margin-right: 2px;
+	margin-left: 2px;
+	border-radius: 14px;
+}
+.komorebi-workspaces .ws-btn {
+	font-size: 16px;
+    background-color: transparent;
+	margin: 0 4px 0 4px;
+	color: #95a0ad;
+    border: none;
+}
+.komorebi-workspaces .ws-btn.populated {
+	color: #f6c177;
+}
+.komorebi-workspaces .ws-btn:hover,
+.komorebi-workspaces .ws-btn.populated:hover,
+.komorebi-workspaces .ws-btn.active {
+	color: #eb6f92;
+    background-color: transparent;
+}
+.komorebi-workspaces .float-override {
+    color: #0eb986;
+    font-size: 14px;
+    padding: 0 0 0 8px;
+}
+.apps-widget .label {
+	font-size: 14px;
+	padding: 0 2px;
+}
+.apps-widget .label:hover {
+	color: #fff;
+}
+/*POWER MENU WIDGET*/
+/* Uptime text */
+.uptime {
+	font-size: 14px;
+	margin-bottom: 10px;
+	color: #ffffff;
+	font-weight: 600;
+	font-family: "Segoe UI";
+}
+.power-menu-widget .label {
+	color: #eb6f92;
+	font-size: 15px;
+}
+
+.power-menu-popup {
+	background-color: rgba(25, 23, 36, 0.9);
+	border-radius: 12px;
+	border: 4px solid rgb(38, 35, 58);
+}
+.power-menu-popup .button {
+	padding: 0;
+	width: 240px;
+	height: 120px;
+	border-radius: 8px;
+	background-color: rgb(38, 35, 58);
+	font-family: "Segoe UI";
+	color: white;
+	border: 1px solid rgba(255, 255, 255, 0.1);
+	margin: 8px;
+}
+.power-menu-popup .button.hover {
+	background-color: rgb(82, 79, 103);
+	border: 1px solid rgb(82, 79, 103);
+}
+.power-menu-popup .button .label {
+	margin-bottom: 8px;
+	font-size: 16px;
+	font-weight: 600;
+	color: rgba(255, 255, 255, 0.95);
+	font-family: "Segoe UI";
+}
+.power-menu-popup .button .icon {
+	font-size: 48px;
+	padding-top: 8px;
+	color: rgba(255, 255, 255, 0.25);
+}
+.power-menu-popup .button.cancel .icon {
+	color: rgba(235, 111, 146, 0.55);
+}
+.power-menu-popup .button.cancel .label {
+	color: rgba(235, 111, 146, 0.95);
+}
+.power-menu-popup .button.shutdown .icon {
+	color: rgba(49, 116, 143, 0.55);
+}
+.power-menu-popup .button.shutdown .label {
+	color: rgba(49, 116, 143, 0.95);
+}
+
+/* ICONS */
+.icon {
+	font-size: 16px;
+}
+.volume-widget .icon {
+	color: #908caa;
+	margin: 1px 2px 0 0;
+}
+.volume-widget {
+	border-top-left-radius: 9px;
+	border-bottom-left-radius: 9px;
+}
+.cpu-widget .icon,
+.memory-widget .icon {
+	font-size: 14px;
+	color: #c4a7e7;
+	margin: 0 2px 1px 0;
+}
+.memory-widget .icon {
+	color: #ebbcba;
+}
+.wifi-widget .icon {
+	color: #f6c177;
+	padding: 0 7px;
+	margin: 0;
+}
+.disk-widget .icon {
+	color: #9ccfd8;
+	margin: 1px 4px 0 0;
+}
+
+.disk-group {
+    background-color: #191724; 
+}
+.memory-widget {
+	padding: 0 0 0 4;
+}
+	
+
+/* Memory widget usage colors. Uncomment if you want to color of the battery widget icon to change based on status */
+
+/*
+.memory-widget.status-low .icon {
+  color: #a6e3a1;
+}
+.memory-widget.status-medium .icon {
+  color: #f9e2af;
+}
+.memory-widget.status-high .icon {
+  color: #fab387;
+}
+.memory-widget.status-critical .icon {
+  color: #f38ba8;
+}
+*/
+
+/* Battery widget value colors. Uncomment if you want to color of the battery widget icon to change based on status */
+
+/*
+.battery-widget.status-charging .icon {
+  color: #74c7ec;
+}
+.battery-widget.status-full .icon {
+  color: #94e2d5;
+}
+.battery-widget.status-high .icon {
+  color: #a6e3a1;
+}
+.battery-widget.status-medium .icon {
+  color: #f9e2af;
+}
+.battery-widget.status-low .icon {
+  color: #fab387;
+}
+.battery-widget.status-critical .icon {
+  color: #f38ba8;
+}
+*/
+
+/* WEATHER WIDGET */
+.weather-widget .icon {
+	font-size: 16px;
+	margin: 0 2px 1px 0;
+}
+
+.weather-widget .icon.sunnyDay {
+	font-size: 20px;
+	color: #f6c177;
+}
+
+.weather-widget .icon.clearNight {
+	color: #524f67;
+	font-size: 20px;
+	margin: 1px 2px 0px 0;
+}
+
+.weather-widget .icon.cloudyDay {
+	font-size: 20px;
+	color: #f6c177;
+}
+
+.weather-widget .icon.cloudyNight {
+	font-size: 20px;
+	color: #6e6a86;
+} 
+
+.weather-widget .icon.rainyDay {
+	font-size: 20px;
+	color: #9ccfd8;
+} 
+
+.weather-widget .icon.rainyNight {
+	font-size: 20px;
+	color: #31748f;
+} 
+.weather-card {
+    background-color: #191724;
+}
+/*
+.weather-widget .icon.snowyIcyDay {} 
+.weather-widget .icon.snowyIcyNight {} 
+.weather-widget .icon.blizzard {} 
+.weather-widget .icon.default {}
+*/
+
+/* MEDIA WIDGET */
+.media-widget {
+	padding: 0;
+	padding-left: 2px;
+	margin: 0;
+	border-top-left-radius: 9px;
+	border-bottom-left-radius: 9px;
+	border-top-right-radius: 9px;
+	border-bottom-right-radius: 9px;
+	margin-right: 8px;
+}
+.media-widget .label {
+	background-color: rgba(0, 0, 0, 0.0);
+}
+.media-widget .btn {
+	color: #acb2c9;
+	padding: 0 3px;
+	margin: 4px 0;
+	font-family: Segoe Fluent Icons;
+}
+.media-widget .btn:hover {
+	color: #89b4fa;
+}
+.media-widget .btn.play {
+	background-color: #313244;
+		border-top-left-radius: 7px;
+	border-bottom-left-radius: 7px;
+	border-top-right-radius: 7px;
+	border-bottom-right-radius: 7px;
+	font-size: 16px;
+}
+.media-widget .btn.disabled:hover,
+.media-widget .btn.disabled {
+	color: #4e525c;
+	font-size: 12px;
+	background-color: rgba(0, 0, 0, 0);
+}
+
+/* GITHUB WIDGET */
+.github-widget {
+    padding:0 4px;
+}
+.github-widget .icon {
+    font-size: 14px;
+	color: #cdd6f4
+}
+.github-widget .icon.new-notification {
+    color: #f38ba8;
+}
+
+.kanata-widget {
+	border-top-right-radius: 9px;
+	border-bottom-right-radius: 9px;
+	margin-left: 0px;
+}
+.kanata-widget .widget-container {}
+.kanata-widget .widget-container .label {
+	font-size: 12px;
+}
+.kanata-widget .widget-container .label.alt {}
+.kanata-widget .icon {
+	color: #31748f;
+	font-size: 17px;
+	margin: 0 4px 0px 0;
+}
+
+.netspeed-widget {
+	padding: 0 4 0 4;
+}
+
+.netspeed-widget .widget-container {}
+.netspeed-widget .widget-container .label {
+	margin-left: 0px;
+}
+.netspeed-widget .widget-container .label.alt {}
+.netspeed-widget .icon {}
