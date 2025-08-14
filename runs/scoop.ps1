@@ -14,7 +14,7 @@ scoop bucket add extras
 # Window management stack
 scoop install wezterm
 scoop install kanata
-scoop install komorebi --whkd
-scoop install yasb
+scoop install komorebi whkd
+scoop install extras/yasb
 
 Write-Host "Scoop installations complete!"
