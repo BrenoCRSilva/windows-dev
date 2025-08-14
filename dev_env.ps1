@@ -62,6 +62,7 @@ Copy-ConfigDir "$scriptDir\env\.config\wezterm" "$configHome\wezterm"
 Copy-ConfigDir "$scriptDir\env\.config\kanata" "$configHome\kanata"  
 Copy-ConfigDir "$scriptDir\env\.config\komorebi" "$configHome\komorebi"
 Copy-ConfigDir "$scriptDir\env\.config\yasb" "$configHome\yasb"
+Copy-ConfigDir "$scriptDir\env\.config\windhawk" "$configHome\windhawk"
 
 # Copy config files
 Copy-ConfigFile "$scriptDir\env\.config\whkdrc" "$configHome\whkdrc"
