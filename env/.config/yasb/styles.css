@@ -1,7 +1,7 @@
 .container-center,
 .container-right {
 	margin: 0;
-	padding: 0;
+    padding: 0;
 }/* ================================================================================
    YASB (Yet Another Status Bar) - Rose Pine Theme
    A comprehensive CSS theme with organized sections and detailed comments
@@ -180,36 +180,53 @@
 }
 
 .disk-widget .icon {
+    font-size: 20px;
 	color: #9ccfd8;
-	margin: 1px 2px 2 0;
+	margin: 1px 10px 2 0;
 }
 
 .disk-group {
-	background-color: #191724;
+    background-color: #191724;
 }
 
-/* Battery Widget - Power level indicator */
-/* Battery widget status colors - Uncomment to enable color coding based on charge level */
-/*
-.battery-widget.status-charging .icon {
-	color: #74c7ec;
+/*Wallpapers Widget */
+
+.wallpapers-widget {
+    padding: 0 6px 0 6px;
 }
-.battery-widget.status-full .icon {
-	color: #94e2d5;
+
+.wallpapers-widget .icon {
+    font-size: 20px;
 }
-.battery-widget.status-high .icon {
-	color: #a6e3a1;
+
+.wallpapers-gallery-window {
+    background-color: rgba(85, 42, 240, 0.01);
+    border: 0;
+    margin: 0;
 }
-.battery-widget.status-medium .icon {
-	color: #f9e2af;
+.wallpapers-gallery-buttons {
+    background-color:rgba(255, 255, 255, 0);
+    color: white;
+    border: none;
+    font-size: 14px;
+    padding: 8px 0;
+    border-radius: 8px;
+    margin:0 8px 8px 8px;
+    width: 600px;
 }
-.battery-widget.status-low .icon {
-	color: #fab387;
+.wallpapers-gallery-buttons:hover {
+    background-color:rgba(255, 255, 255, 0.1)
 }
-.battery-widget.status-critical .icon {
-	color: #f38ba8;
+.wallpapers-gallery-image {
+    border: 4px solid transparent;
+    border-radius: 10px;
 }
-*/
+.wallpapers-gallery-image:hover {
+    border: 4px solid rgb(66, 68, 83);
+}
+.wallpapers-gallery-image.focused {
+    border: 4px solid #89b4fa;
+}
 
 /* ================================================================================
    NETWORK AND CONNECTIVITY
@@ -346,14 +363,6 @@
 	background-color: #191724;
 }
 
-/* Additional weather conditions - Uncomment and style as needed */
-/*
-.weather-widget .icon.snowyIcyDay {} 
-.weather-widget .icon.snowyIcyNight {} 
-.weather-widget .icon.blizzard {} 
-.weather-widget .icon.default {}
-*/
-
 /* ================================================================================
    POWER AND SYSTEM CONTROL
    Power menu, uptime, and system control widgets
@@ -361,7 +370,7 @@
 
 /* Power Menu Widget - First widget in left group */
 .power-menu-widget {
-	padding: 0 8px 0 12px;
+	padding: 0 6px 0 8px;
 	border-top-left-radius: 9px;
 	border-bottom-left-radius: 9px;
 	margin: 0 0 0 0;
@@ -369,8 +378,8 @@
 
 .power-menu-widget .label {
 	color: #eb6f92;
-	font-size: 20px;
-    margin: 0 0 4 0;
+	font-size: 22px;
+    margin: 0 0 2 0;
 }
 
 /* Power Menu Popup - Modal dialog for power options */
@@ -464,7 +473,7 @@
 .kanata-widget .icon {
 	color: #31748f;
 	font-size: 17px;
-	margin: 0 4px 0px 0;
+	margin: 0 4px 1px 0;
 }
 
 /* ================================================================================
@@ -484,3 +493,5 @@
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 }
+
+

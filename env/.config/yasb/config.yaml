@@ -39,6 +39,7 @@ bars:
         [
         "power_menu",
         "disk",
+        "wallpapers",
         "cpu",
         "memory",
         "wifi",
@@ -285,3 +286,30 @@ widgets:
           distance: 6
         callbacks:
           on_left: "toggle_group"
+  
+  wallpapers:
+    type: "yasb.wallpapers.WallpapersWidget"
+    options:
+      label: "<span>\udb83\ude09</span>"
+      image_path: "$env:USERPROFILE/.config/wallpapers" # Example path to folder with images
+      change_automatically: false # Automatically change wallpaper
+      update_interval: 60 # If change_automatically is true, update interval in seconds
+      gallery:
+          enabled: true
+          blur: true
+          image_width: 220
+          image_per_page: 8
+          show_buttons: false
+          orientation: "portrait"
+          image_spacing: 8
+          lazy_load: true
+          lazy_load_delay: 80
+          lazy_load_fadein: 400
+          image_corner_radius: 20
+          enable_cache: true
+      run_after: 
+      label_shadow:
+        enabled: true
+        color: "black"
+        radius: 3
+        offset: [ 1, 1 ] 
