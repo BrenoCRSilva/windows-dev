@@ -51,7 +51,6 @@ bars:
         ]
       right:
         [
-          
           "media",
           "volume",
           "weather",
@@ -69,7 +68,7 @@ widgets:
         run_interval: 5000
         return_format: "string"
       callbacks:
-        on_left: "exec powershell kanata -c C:\\Users\\breno\\.config\\kanata\\kanata.kbd -p 9999" 
+        on_left: "exec powershell kanata -c $env:USERPROFILE/.config/kanata/kanata.kbd -p 9999" 
         on_right: "exec powershell Stop-Process -Name 'kanata' -Force -ErrorAction SilentlyContinue"
 
   active_window:
@@ -118,6 +117,7 @@ widgets:
         #locale: 'en_EN' # Langugae for date, you can set your own, example fr_FR
         timezones: [] #Looking up time zone info from registry
         #timezones: ["America/Montreal"]
+
   cpu:
       type: "yasb.cpu.CpuWidget"
       options:
@@ -137,6 +137,7 @@ widgets:
         histogram_num_columns: 8
         callbacks:
           on_right: "exec cmd /c Taskmgr"
+
   memory:
       type: "yasb.memory.MemoryWidget"
       options:
@@ -145,14 +146,7 @@ widgets:
         update_interval: 10000
         callbacks:
           on_right: "exec cmd /c Taskmgr"
-  language:
-      type: "yasb.language.LanguageWidget"
-      options:
-        label: "<span>\uf1ab</span> {lang[language_code]}-{lang[country_code]}"
-        label_alt: " {lang[full_name]}"
-        update_interval: 5 # 5 seconds
-        callbacks:
-          on_left: "toggle_label"
+
   komorebi_workspaces:
       type: "komorebi.workspaces.WorkspaceWidget"
       options:
@@ -169,34 +163,7 @@ widgets:
             left: 8
             bottom: 0
             right: 8
-  komorebi_active_layout:
-      type: "komorebi.active_layout.ActiveLayoutWidget"
-      options:
-        hide_if_offline: true
-        label: "{icon}"
-        layouts: ['bsp', 'columns', 'rows', 'grid', 'vertical_stack', 'horizontal_stack', 'ultrawide_vertical_stack','right_main_vertical_stack']
-        layout_icons:
-          bsp: "BSP"
-          columns: "COLS"
-          rows: "ROWS"
-          grid: "GRID"
-          vertical_stack: "V-STACK"
-          horizontal_stack: "H-STACK"
-          ultrawide_vertical_stack: "W-STACK"
-          right_main_vertical_stack: "RMV-STACK"
-          monocle: "MONOCLE"
-          maximised: "MAX"
-          floating: "FLOATING"
-          paused: "PAUSED"
-        callbacks:
-          on_left: 'next_layout'
-          on_middle: 'toggle_monocle'
-          on_right: 'prev_layout'
-        container_padding: 
-          top: 0
-          left: 8
-          bottom: 0
-          right: 8
+
   wifi:
       type: "yasb.wifi.WifiWidget"
       options:
@@ -222,6 +189,7 @@ widgets:
           color: "black"
           radius: 3
           offset: [ 1, 1 ]
+
   netspeed:
       type: "yasb.custom.CustomWidget"
       options:
@@ -235,20 +203,7 @@ widgets:
         callbacks:
           on_left: "toggle_label"
           on_right: "do_nothing"
-  ip_info:
-      type: "yasb.custom.CustomWidget"
-      options:
-        label: "<span>\udb81\udd9f</span> {data[ip]}"
-        label_alt: "<span>\uf450</span> {data[city]} {data[region]}, {data[country]}"
-        class_name: "ip-info-widget"
-        exec_options:
-          run_cmd: "curl.exe https://ipinfo.io"
-          run_interval: 120000  # every 5 minutes
-          return_format: "json"
-        callbacks:
-          on_left: "toggle_label"
-          on_middle: "exec cmd /c ncpa.cpl" # open network settings
-          on_right: "exec cmd /c start https://ipinfo.io/{data[ip]} " # open ipinfo in browser
+
   weather:
     type: "yasb.weather.WeatherWidget"
     options:
@@ -262,15 +217,12 @@ widgets:
       callbacks:
         on_left: "toggle_card"
       icons:
-        sunnyDay: "\udb81\udd99"
-        clearNight: "\ue3c2"
-        cloudyDay: "\ue21d"
-        cloudyNight: "\ue226"
-        rainyDay: "\ue371"
-        rainyNight: "\ue371"
-        snowyIcyDay: "\udb81\udf17"
-        snowyIcyNight: "\udb81\udf17"
-        blizzard: "\udb81\udd99"
+        sunnyDay: "󰖙 "
+        clearNight: "󰖔 "
+        cloudyDay: "󰖕 "
+        cloudyNight: "󰼱 "
+        rainyDay: "󰖖 "
+        rainyNight: "󰖖 "
         default: "\udb81\udd99"
       weather_card:
         blur: True
@@ -281,34 +233,25 @@ widgets:
         direction: "down"
         distance: 6
         icon_size: 48
-        #icons: 
-         # sunnyDay: "\ue30d"
-          #clearNight: "\ue32b"
-          #cloudyDay: "\udb81\udd99"
-          #cloudyNight: "\ue311"
-          #rainyDay: "\udb81\ude7e"
-          #rainyNight: "\udb81\ude7e"
-          #snowyIcyDay: "\udb81\udd98"
-          #snowyIcyNight: "\udb81\udd98"
-          #blizzard: "\uebaa"
-          #default: "\uebaa"
+
   volume:
       type: "yasb.volume.VolumeWidget"
       options:
-        label: "<span>{icon}</span> {level}"
+        label: "<span>{icon}</span>{level}"
         label_alt: "{volume}"
         volume_icons:
-          - "\ueee8"  # Icon for muted
-          - "\uf026"  # Icon for 0-10% volume
-          - "\uf027"  # Icon for 11-30% volume
-          - "\uf027"  # Icon for 31-60% volume
-          - "\uf028"  # Icon for 61-100% volume
+          - " "  # Icon for muted
+          - " "  # Icon for 0-10% volume
+          - " "  # Icon for 11-30% volume
+          - " "  # Icon for 31-60% volume
+          - " "  # Icon for 61-100% volume
         callbacks:
           on_right: "exec cmd.exe /c start ms-settings:sound"
+
   power_menu:
       type: "yasb.power_menu.PowerMenuWidget"
       options:
-        label: "\uf011"
+        label: "⏻"
         uptime: True
         blur: False
         blur_background: True
@@ -318,70 +261,12 @@ widgets:
           lock: ["\uea75","Lock"]
           signout: ["\udb80\udf43","Sign out"]
           #sleep: ["\u23fe","Sleep"]
-          shutdown: ["\uf011","Shut Down"]
+          shutdown: ["⏻","Shut Down"]
           restart: ["\uead2","Restart"]
           hibernate: ["\uf28e","Hibernate"]
           cancel: ["\udb81\udf3a","Cancel"]
           #force_shutdown: ["\uf011","Force Shut Down"]
           #force_restart: ["\uead2","Force Restart"]
-  apps:
-      type: "yasb.applications.ApplicationsWidget"
-      options:
-        label: "{data}"
-        app_list:
-          #- {icon: "\uf489", launch: "wt"}
-          #- {icon: "\uf413", launch: "explorer c:\\Users\\amn"}
-          #- {icon: "\udb82\ude1e", launch: "C:\\Users\\amn\\AppData\\Local\\Programs\\Microsoft VS Code\\Code.exe"}
-          #- {icon: "\udb80\ude39", launch: "C:\\Program Files\\Mozilla Firefox\\firefox.exe"}
-          #- {icon: "\uf1ff", launch: "C:\\Users\\amn\\AppData\\Local\\Discord\\Update.exe --processStart Discord.exe"}
-          #- {icon: "\ue217", launch: "C:\\Users\\amn\\AppData\\Roaming\\Telegram Desktop\\Telegram.exe"}
-          - {icon: "\uf0a2", launch: "notification_center"}
-          - {icon: "\ueb51", launch: "quick_settings"}
-          #- {icon: "\uf46a", launch: "cmd.exe /c start ms-settings:windowsupdate"}
-          - {icon: "\uf422", launch: "search"}
-          #- {icon: "\udb84\udf55", launch: "widget"}
-          # Currently available to use quick_settings, notification_center, search, widget, launcher (launcher will trigger ALT+A)
-        container_padding: 
-          top: 0
-          left: 8
-          bottom: 0
-          right: 8
-  github:
-      type: "yasb.github.GithubWidget"
-      options:
-        label: "<span>\ueba1</span>"
-        label_alt: "Notifications {data}" # {data} return number of unread notification
-        token: ghp_xxxxxxxxxxx # GitHub Personal access tokens (classic) https://github.com/settings/tokens
-        # You can set token: env, this means you have to set YASB_GITHUB_TOKEN in environment variable
-        max_notification: 20 # Max number of notification displaying in menu max: 50
-        only_unread: false # Show only unread or all notifications; 
-        max_field_size: 54 # Max characters in title before truncation.
-        update_interval: 300 # Check for new notification in seconds
-  wallapers:
-      type: "yasb.wallpapers.WallpapersWidget"
-      options:
-        label: "<span>\udb83\ude09</span>"
-        image_path: "C:\\Users\\xxx\\Images" # Path to folder with images
-        change_automatically: false # Automatically change wallpaper
-        update_interval: 60 # If change_automatically is true, update interval in seconds
-  nvidia_temp:
-      type: "yasb.custom.CustomWidget"
-      options:
-        label: "{data}<span>\udb81\udd04</span>"
-        label_alt: "{data}"
-        class_name: "system-widget"
-        exec_options:
-          run_cmd: "powershell nvidia-smi --query-gpu=temperature.gpu --format=csv,noheader"
-          run_interval: 10000 # run every 10 sec
-          return_format: "string"
-  win_button:
-      type: "yasb.custom.CustomWidget"
-      options:
-        label: "\ue62a"
-        label_alt: "\ue62a"
-        class_name: "system-widget"
-        callbacks:
-          on_left: "exec start_menu"
       
   disk:
     type: "yasb.disk.DiskWidget"

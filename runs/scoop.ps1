@@ -11,10 +11,8 @@ if (!(Get-Command scoop -ErrorAction SilentlyContinue)) {
 # Add required buckets
 scoop bucket add extras
 
-# Window management stack
-scoop install wezterm
-scoop install kanata
-scoop install komorebi whkd
-scoop install extras/yasb
+#Install NerdFont and Kanata
+scoop install extras/kanata
+
 
 Write-Host "Scoop installations complete!"
