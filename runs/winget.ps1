@@ -2,10 +2,6 @@
 
 Write-Host "Installing applications via winget..."
 
-# Browsers
-winget install Google.Chrome
-winget install Discord.Discord
-
 # Window management
 winget install LGUG2Z.komorebi
 winget install LGUG2Z.whkd

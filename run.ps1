@@ -43,7 +43,6 @@ Write-Log "--------- Windows Environment Setup ---------"
 if ($InstallWSL) {
     $wslArgs = @()
     if ($DryRun) { $wslArgs += "-DryRun" }
-    Execute-Script "$scriptDir\runs\enable_wsl.ps1"
     Execute-Script "$scriptDir\runs\wsl.ps1" $wslArgs
     
     if (!$DryRun) {
@@ -61,7 +60,13 @@ Execute-Script "$scriptDir\runs\scoop.ps1"
 Execute-Script "$scriptDir\runs\configure.ps1"
 
 Write-Log "--------- Windows Bootstrap Complete ---------"
-Write-Log ""
-Write-Log "Next steps:"
-Write-Log "  1. Run '.\dev-env.ps1' to deploy Windows configuration files"
-Write-Log "  2. (Optional) Run '.\run.ps1 -InstallWSL' to set up WSL with ArchLinux"
+
+$response = Read-Host "Would you like to set you Windows DEV ENV? (y/n)"
+if ($response -eq 'y' -or $response -eq 'Y') {
+     Execute-Script "$scriptDir\dev_env.ps1"
+}
+
+$response = Read-Host "Would you like to enable WSL? (y/n)"
+if ($response -eq 'y' -or $response -eq 'Y') {
+     Execute-Script "$scriptDir\runs\enable_wsl.ps1"
+}

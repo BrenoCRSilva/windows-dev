@@ -104,7 +104,9 @@ echo "Running as $(whoami), home is $HOME"
 
 # Install paru
 echo "[*] Installing paru..."
-sudo pacman -S --needed --noconfirm base-devel
+sudo pacman -S --needed --noconfirm base-devel rustup
+rustup default stable
+rustup toolchain install nightly
 git clone https://aur.archlinux.org/paru.git
 cd paru
 makepkg -si --noconfirm

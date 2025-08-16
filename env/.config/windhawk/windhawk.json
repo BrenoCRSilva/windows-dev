@@ -11,18 +11,6 @@
     "disableNewStartMenuLayout": 1,
     "styleConstants[0]": ""
   },
-  "tray": {
-    "hideVolumeIcon": 1,
-    "hideNetworkIcon": 1,
-    "hideBatteryIcon": 1,
-    "hideMicrophoneIcon": 1,
-    "hideGeolocationIcon": 1,
-    "hideLanguageBar": 0,
-    "hideLanguageSupplementaryIcons": 0,
-    "hideBellIcon": "whenInactive",
-    "showDesktopButtonWidth": 14,
-    "hideStudioEffectsIcon": 1
-  },
   "taskbar": {
     "controlStyles[0].target": "Taskbar.TaskbarFrame#TaskbarFrame > Grid#RootGrid",
     "controlStyles[0].styles[0]": "Padding=2,0,2,0",
