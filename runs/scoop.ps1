@@ -10,9 +10,11 @@ if (!(Get-Command scoop -ErrorAction SilentlyContinue)) {
 
 # Add required buckets
 scoop bucket add extras
+scoop bucket add nerd-fonts
 
 #Install NerdFont and Kanata
 scoop install extras/kanata
+scoop install FiraCode-NF
 
 
 Write-Host "Scoop installations complete!"

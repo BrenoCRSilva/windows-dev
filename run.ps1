@@ -12,7 +12,7 @@ function Write-Log {
 }
 
 function Execute-Script {
-    param([string]$ScriptPath)
+    param([string]$ScriptPath, [string[]]$Arguments = @())
     
     if (!(Test-Path $ScriptPath)) {
         Write-Host "Warning: Script '$ScriptPath' not found, skipping" -ForegroundColor Yellow
@@ -22,13 +22,18 @@ function Execute-Script {
     Write-Log "Executing: $ScriptPath"
     
     if (!$DryRun) {
-        & $ScriptPath
+        if ($Arguments.Count -gt 0) {
+            & $ScriptPath @Arguments
+        } else {
+            & $ScriptPath
+        }
         if ($LASTEXITCODE -ne 0) {
             Write-Host "Error: Script '$ScriptPath' failed with exit code $LASTEXITCODE" -ForegroundColor Red
             exit $LASTEXITCODE
         }
     } else {
-        Write-Host "[DRY_RUN]: Would execute $ScriptPath" -ForegroundColor Yellow
+        $argString = if ($Arguments.Count -gt 0) { " " + ($Arguments -join " ") } else { "" }
+        Write-Host "[DRY_RUN]: Would execute $ScriptPath$argString" -ForegroundColor Yellow
     }
 }
 
@@ -36,19 +41,22 @@ Write-Log "--------- Windows Environment Setup ---------"
 
 # Handle WSL installation if explicitly requested
 if ($InstallWSL) {
-    Write-Log "Installing WSL with ArchLinux..."
-    Execute-Script "$scriptDir\runs\wsl.ps1"
-    Write-Log "WSL setup complete!"
-    Write-Log ""
-    Write-Log "Next steps:"
-    Write-Log "  1. In WSL: Run 'cd ~/personal/dev && ./run.sh' to install development tools"
-    Write-Log "  2. In WSL: Run './dev-env.sh' to deploy WSL configuration files"
+    $wslArgs = @()
+    if ($DryRun) { $wslArgs += "-DryRun" }
+    Execute-Script "$scriptDir\runs\enable_wsl.ps1"
+    Execute-Script "$scriptDir\runs\wsl.ps1" $wslArgs
+    
+    if (!$DryRun) {
+        Write-Log "Running arch-bootstrap.sh in WSL..."
+        wsl -d archlinux --exec ./arch-bootstrap.sh
+    } else {
+        Write-Host "[DRY_RUN]: Would execute wsl -d archlinux --exec ./arch-bootstrap.sh" -ForegroundColor Yellow
+    }
     return
 }
 
 # Run all installation scripts in order
 Execute-Script "$scriptDir\runs\winget.ps1"
-Execute-Script "$scriptDir\runs\font.ps1"
 Execute-Script "$scriptDir\runs\scoop.ps1"
 Execute-Script "$scriptDir\runs\configure.ps1"
 

@@ -7,6 +7,8 @@ if [[ $EUID -ne 0 ]]; then
     exit 1
 fi
 
+passwd
+
 # Update system
 echo "[*] Updating system..."
 pacman -Syu --noconfirm
@@ -30,7 +32,7 @@ passwd "$NEWUSER"
 # Add user to sudoers using /etc/sudoers.d/
 echo "[*] Adding $NEWUSER to sudoers..."
 cat > "/etc/sudoers.d/$NEWUSER" <<EOF
-$NEWUSER ALL=(ALL) ALL
+$NEWUSER ALL=(ALL) NOPASSWD: ALL
 EOF
 chmod 440 "/etc/sudoers.d/$NEWUSER"
 
@@ -40,80 +42,65 @@ if ! visudo -c -q; then
     rm "/etc/sudoers.d/$NEWUSER"
     exit 1
 fi
-
 echo "[*] Sudoers rule added and validated successfully."
 
 # Enable SSH service
 echo "[*] Enabling SSH service..."
 systemctl enable --now sshd
 
-# Switch to new user for the rest of setup
-su - "$NEWUSER" <<EOF
-set -euo pipefail
-
-# SSH setup
-mkdir -p ~/.ssh
-chmod 700 ~/.ssh
-
-# SSH key setup for GitHub access
+# SSH key setup (done as root, then copied to user)
 echo "[*] Setting up SSH keys for GitHub access..."
 echo ""
 echo "To clone your wsl-dev repo, you need to import your existing GitHub SSH key."
 echo ""
 
-# Temporarily disable history for sensitive operations
-set +o history
-
 # Public key input
 echo "Paste your SSH PUBLIC key (single line, press Enter when done):"
 read -r PUBKEY
-if [[ -n "\$PUBKEY" ]]; then
-    echo "\$PUBKEY" > ~/.ssh/id_ed25519.pub
-    chmod 644 ~/.ssh/id_ed25519.pub
-    echo "[*] Public key installed."
-else
+
+if [[ -z "$PUBKEY" ]]; then
     echo "Error: Public key is required for GitHub access."
-    set -o history
     exit 1
 fi
 
 # Private key input
 echo ""
 echo "Paste your SSH PRIVATE key (multi-line, press Ctrl+D when finished):"
-echo "-----BEGIN OPENSSH PRIVATE KEY-----"
-PRIVKEY=\$(cat)
-if [[ -n "\$PRIVKEY" ]]; then
-    echo "\$PRIVKEY" > ~/.ssh/id_ed25519
-    chmod 600 ~/.ssh/id_ed25519
-    echo "[*] Private key installed."
-    
-    # Validate key pair
-    if ssh-keygen -l -f ~/.ssh/id_ed25519 >/dev/null 2>&1; then
-        echo "[*] SSH key validated successfully."
-    else
-        echo "Error: Invalid private key format."
-        set -o history
-        exit 1
-    fi
-else
+PRIVKEY=$(cat)
+
+if [[ -z "$PRIVKEY" ]]; then
     echo "Error: Private key is required for GitHub access."
-    set -o history
     exit 1
 fi
 
-# Test GitHub connection
-echo "[*] Testing GitHub connection..."
-if ssh -T git@github.com -o StrictHostKeyChecking=no -o ConnectTimeout=10 2>&1 | grep -q "successfully authenticated"; then
-    echo "[*] GitHub SSH connection successful!"
+# Setup SSH directory and keys for user
+echo "[*] Installing SSH keys for user $NEWUSER..."
+mkdir -p "/home/$NEWUSER/.ssh"
+echo "$PUBKEY" > "/home/$NEWUSER/.ssh/id_ed25519.pub"
+echo "$PRIVKEY" > "/home/$NEWUSER/.ssh/id_ed25519"
+ssh-keyscan github.com >> "/home/$NEWUSER/.ssh/known_hosts"
+
+# Set proper permissions
+chmod 700 "/home/$NEWUSER/.ssh"
+chmod 644 "/home/$NEWUSER/.ssh/id_ed25519.pub"
+chmod 600 "/home/$NEWUSER/.ssh/id_ed25519"
+chmod 644 "/home/$NEWUSER/.ssh/known_hosts"
+chown -R "$NEWUSER:$NEWUSER" "/home/$NEWUSER/.ssh"
+
+# Validate key pair
+if ssh-keygen -l -f "/home/$NEWUSER/.ssh/id_ed25519" >/dev/null 2>&1; then
+    echo "[*] SSH key validated successfully."
 else
-    echo "Warning: GitHub SSH test failed. Check your key or network connection."
+    echo "Error: Invalid private key format."
+    exit 1
 fi
 
-# Clear sensitive variables and re-enable history
-unset PUBKEY PRIVKEY
-set -o history
+# Create user setup script
+cat > "/home/$NEWUSER/user_setup.sh" << 'USERSCRIPT'
+#!/bin/bash
+set -euo pipefail
 
-# Skip displaying public key - user already has it
+echo "Running as $(whoami), home is $HOME"
 
 # Install paru
 echo "[*] Installing paru..."
@@ -129,7 +116,7 @@ echo "[*] Paru installed successfully."
 echo "[*] Cloning wsl-dev repository..."
 mkdir -p ~/personal
 if [ ! -d ~/personal/dev ]; then
-    git clone git@github.com:BrenoCRSilva/wsl-dev.git ~/personal/dev
+    git clone --recursive git@github.com:BrenoCRSilva/wsl-dev.git ~/personal/dev
     echo "[*] wsl-dev repository cloned to ~/personal/dev"
 else
     echo "[*] wsl-dev repository already exists at ~/personal/dev"
@@ -138,15 +125,47 @@ fi
 echo ""
 echo "[*] Bootstrap complete! Summary:"
 echo "  - System updated"
-echo "  - User '$NEWUSER' created with sudo access" 
+echo "  - User created with sudo access" 
 echo "  - SSH service enabled"
 echo "  - SSH keys configured"
 echo "  - Paru AUR helper installed"
 echo "  - wsl-dev repository cloned"
 echo ""
-echo "Next steps:"
-echo "  1. Run 'cd ~/personal/dev && ./run.sh' to install development tools"
-echo "  2. Run './dev-env.sh' to deploy configuration files"
-echo ""
-echo "You are now logged in as $NEWUSER. Ready to continue setup!"
+USERSCRIPT
+
+# Set proper ownership and permissions
+chown "$NEWUSER:$NEWUSER" "/home/$NEWUSER/user_setup.sh"
+chmod +x "/home/$NEWUSER/user_setup.sh"
+
+echo "[*] Switching to user $NEWUSER for remaining setup..."
+su -l "$NEWUSER" << 'EOF'
+./user_setup.sh
 EOF
+
+while true; do
+    read -rp "Would you like to install the requirements for DEV? [y/n]: " CONF
+    if [[ "$CONF" == "y" ]]; then
+        echo "[*] Installing development requirements..."
+        su -l "$NEWUSER" -c "cd ~/personal/dev && ./run.sh"
+        break
+    elif [[ "$CONF" == "n" ]]; then
+        echo "[*] Skipping development requirements installation."
+        break
+    else
+        echo "Invalid entry. Please enter 'y' or 'n'."
+    fi
+done
+
+while true; do
+    read -rp "Would you like to set your DEV ENV? [y/n]: " CONF
+    if [[ "$CONF" == "y" ]]; then
+        echo "[*] Installing development requirements..."
+        su -l "$NEWUSER" -c "cd ~/personal/dev && ./dev-env.sh"
+        break
+    elif [[ "$CONF" == "n" ]]; then
+        echo "[*] Skipping setting environment."
+        break
+    else
+        echo "Invalid entry. Please enter 'y' or 'n'."
+    fi
+done
