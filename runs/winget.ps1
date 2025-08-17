@@ -1,5 +1,3 @@
-#!/usr/bin/env powershell
-
 Write-Host "Installing applications via winget..."
 
 # Window management

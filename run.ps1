@@ -1,4 +1,3 @@
-#!/usr/bin/env powershell
 param(
     [switch]$DryRun,
     [switch]$InstallWSL

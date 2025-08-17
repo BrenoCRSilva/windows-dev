@@ -1,4 +1,3 @@
-#!/usr/bin/env powershell
 Write-Host "Starting PowerShell environment setup..." -ForegroundColor Cyan
 
 # Configure Starship prompt

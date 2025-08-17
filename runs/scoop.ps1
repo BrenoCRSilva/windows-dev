@@ -1,5 +1,3 @@
-#!/usr/bin/env powershell
-
 Write-Host "Installing Scoop and tools..."
 
 # Install Scoop if not present

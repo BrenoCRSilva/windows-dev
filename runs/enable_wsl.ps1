@@ -1,5 +1,3 @@
-#!/usr/bin/env powershell
-
 # Check if WSL is already working
 $wslWorking = try {
     wsl --status 2>$null
