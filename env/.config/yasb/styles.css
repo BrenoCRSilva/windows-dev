@@ -1,497 +1,473 @@
-.container-center,
-.container-right {
-	margin: 0;
-    padding: 0;
-}/* ================================================================================
-   YASB (Yet Another Status Bar) - Rose Pine Theme
-   A comprehensive CSS theme with organized sections and detailed comments
+/* ================================================================================
+   YASB (Yet Another Status Bar) - Rose Pine Theme (Reorganized)
+   A comprehensive CSS theme with consistent spacing and improved organization
    ================================================================================ */
 
 /* ================================================================================
-   GLOBAL STYLES
+   GLOBAL STYLES AND VARIABLES
    Base styling applied to all elements
    ================================================================================ */
 * {
-	font-size: 12px;
-	color: #e0def4;
-	font-weight: 500;
-	font-family: "FiraCode Nerd Font Propo";
-	margin: 0;
-	padding: 0;
+    font-size: 13px;
+    color: #e0def4;
+    font-weight: 500;
+    font-family: "FiraCode Nerd Font Propo";
+    padding: 0;
 }
+
+/* ================================================================================
+   SPACING CONSTANTS (Applied consistently throughout)
+   Standard spacing values used across all widgets
+   ================================================================================ */
+/* 
+   SPACING PATTERN:
+   - Small spacing: 4px
+   - Medium spacing: 8px  
+   - Large spacing: 12px
+   - Widget padding: 8px horizontal, 4px vertical
+   - Icon margin: 4px right
+   - Border radius: 9px for groups, 7px for inner elements
+*/
 
 /* ================================================================================
    BAR AND CONTAINER LAYOUT
    Main bar structure and container positioning
    ================================================================================ */
 .yasb-bar {
-	padding: 0;
-	margin: 0;
+    padding: 0;
+    margin: 0;
 }
 
-/* Left container with padding to align with tiled window borders */
 .container-left {
-	margin: 0;
-	padding: 0 0 0 2px;
+    margin: 0;
+    padding: 0 0 0 4px;
+}
+
+.container-center,
+.container-right {
+    margin: 0;
+    padding: 0;
 }
 
 /* ================================================================================
    BASE WIDGET STYLES
    Common styling for all widgets and labels
    ================================================================================ */
-/* Base widget styling */
 .widget {
-	background-color: #191724;
-	padding: 0px 10px;
-	margin: 0;
-	overflow: visible;
+    background-color: #191724;
+    padding: 4px 8px;
+    margin: 0;
+    overflow: visible;
 }
 
 .widget .label {
-	padding: 1px 4px;
-	vertical-align: middle;
-	display: inline-flex;
-	align-items: center;
-	overflow: visible;
+    padding: 2px 4px;
+    vertical-align: middle;
+    display: inline-flex;
+    align-items: center;
+    overflow: visible;
 }
 
 .widget .label.alt {
-	padding: 1px 10px;
-	vertical-align: middle;
-	display: inline-flex;
-	align-items: center;
-	overflow: visible;
+    padding: 2px 8px;
+    vertical-align: middle;
+    display: inline-flex;
+    align-items: center;
+    overflow: visible;
 }
 
 /* ================================================================================
-   WINDOW AND WORKSPACE WIDGETS
-   Active window display and workspace management
+   GLOBAL ICON STYLES
+   Common icon styling and sizing - Consistent size for all except special cases
+   ================================================================================ */
+.icon {
+    font-size: 21px; /* Standard size for all icons */
+    margin-right: 4px;
+    vertical-align: middle;
+    display: inline-block;
+    line-height: 1;
+    min-width: 18px;
+    text-align: left;
+    font-feature-settings: "liga" 1, "calt" 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* ================================================================================
+   WIDGET GROUPS - LEFT CONTAINER
+   Consistent styling for widget groups
    ================================================================================ */
 
-/* Active Window Widget - Shows current focused window */
-.active-window-widget {
-	font-size: 14px;
-	border-top-right-radius: 9px;
-	border-bottom-right-radius: 9px;
-	padding: 0 9px 0 9px;
+/* Power Menu Widget - First in left group */
+.power-menu-widget {
+    border-top-left-radius: 9px;
+    border-bottom-left-radius: 9px;
+    position: relative;
 }
 
-.active-window-widget .label {
-	font-size: 16px;
-	padding: 0;
+.power-menu-widget .label {
+    color: #eb6f92;
+    font-size: 21px; /* Special size for power button */
+    position: relative;
+    padding-top: 0px; /* Move font slightly downwards */
+    padding-right: 0px; /* Add padding to separate from icon */
 }
 
-/* Komorebi Workspaces - Window manager workspace switcher */
+/* Kanata Widget - Last in left group */
+.kanata-widget {
+    border-top-right-radius: 9px;
+    border-bottom-right-radius: 9px;
+}
+
+.kanata-widget .icon {
+    color: #31748f;
+    font-size: 23px; /* Special size for kanata icon */
+    padding-bottom: 2px;
+}
+
+/* ================================================================================
+   WORKSPACE AND WINDOW WIDGETS
+   ================================================================================ */
+
+/* Komorebi Workspaces */
 .komorebi-workspaces {
-	border-top-left-radius: 9px;
-	border-bottom-left-radius: 9px;
-	padding: 0 4px 0 4px;
+    border-top-left-radius: 9px;
+    border-bottom-left-radius: 9px;
+    padding: 2px 6px;
 }
 
-.komorebi-workspaces .widget-container,
-.komorebi-active-layout .widget-container {
-	background-color: #26233a;
-	margin: 4px 0px 4px 0px;
-	border-radius: 7px;
+.komorebi-workspaces .widget-container {
+    background-color: #26233a;
+    margin: 4px 0;
+    border-radius: 6px;
 }
-
 .komorebi-workspaces .ws-btn {
-	font-size: 16px;
-	background-color: transparent;
-	margin: 0 4px 0 4px;
-	color: #95a0ad;
-	border: none;
+    font-size: 18px;
+    background-color: transparent;
+    margin: 0 4px;
+    color: #95a0ad;
+    border: none;
 }
 
 .komorebi-workspaces .ws-btn.populated {
-	color: #f6c177;
+    color: #f6c177;
 }
 
 .komorebi-workspaces .ws-btn:hover,
 .komorebi-workspaces .ws-btn.populated:hover,
 .komorebi-workspaces .ws-btn.active {
-	color: #eb6f92;
-	background-color: transparent;
+    color: #eb6f92;
+    background-color: transparent;
 }
 
 .komorebi-workspaces .float-override {
-	color: #0eb986;
-	font-size: 14px;
-	padding: 0 0 0 8px;
+    color: #0eb986;
+    font-size: 14px;
+    padding-left: 8px;
 }
 
-/* Komorebi Active Layout - Shows current tiling layout */
+/* Active Window Widget */
+.active-window-widget {
+    font-size: 14px;
+    border-top-right-radius: 9px;
+    border-bottom-right-radius: 9px;
+    padding: 4px 12px;
+}
+
+.active-window-widget .label {
+    font-size: 20px;
+    padding: 0;
+}
+
+/* Komorebi Active Layout */
 .komorebi-active-layout {
-	border-top-right-radius: 18px;
-	border-bottom-right-radius: 18px;
+    border-top-right-radius: 18px;
+    border-bottom-right-radius: 18px;
+    padding: 4px 8px;
+}
+
+.komorebi-active-layout .widget-container {
+    background-color: #26233a;
+    margin: 4px 0;
+    border-radius: 12px;
 }
 
 .komorebi-active-layout .label {
-	font-weight: 600;
-	padding: 0 0 0 0;
+    font-weight: 600;
+    padding: 0;
 }
-
-
 
 /* ================================================================================
    SYSTEM INFORMATION WIDGETS
-   CPU, Memory, Disk, and other system metrics
    ================================================================================ */
 
-/* CPU Widget - Processor usage display */
-/* Memory Widget - RAM usage display */
-.cpu-widget .icon,
-.memory-widget .icon {
-	font-size: 14px;
-	margin: 0 2px 1px 0;
-}
-
+/* CPU Widget */
 .cpu-widget .icon {
-	color: #c4a7e7;
+    font-size: 20px; 
+    color: #c4a7e7;
+    padding-bottom: 2px;
+    padding-left: 2px; /* Add padding to separate from label */
 }
 
-.memory-widget {
-	padding: 0 0 0 4;
+.cpu-widget {
+    border-top-left-radius: 9px;
+    border-bottom-left-radius: 9px;
+    margin-left: 8px; /* Add margin to separate from next widget */
 }
 
+/* Memory Widget */
 .memory-widget .icon {
-	color: #ebbcba;
+    color: #ebbcba;
+    padding-bottom: 2px;
 }
 
-/* Memory widget status colors - Uncomment to enable color coding based on usage */
-/*
-.memory-widget.status-low .icon {
-	color: #a6e3a1;
-}
-.memory-widget.status-medium .icon {
-	color: #f9e2af;
-}
-.memory-widget.status-high .icon {
-	color: #fab387;
-}
-.memory-widget.status-critical .icon {
-	color: #f38ba8;
-}
-*/
-
-/* Disk Widget - Storage usage display */
-.disk-widget {
-	padding: 0 6px 0 8px;
-}
-
+/* Disk Widget */
 .disk-widget .icon {
-    font-size: 20px;
-	color: #9ccfd8;
-	margin: 1px 10px 2 0;
+    font-size: 21px; /* Special size for disk */
+    color: #9ccfd8;
+    margin-right: 8px; /* Larger margin for this specific icon */
 }
 
 .disk-group {
     background-color: #191724;
 }
 
-/*Wallpapers Widget */
+/* Wallpapers Widget */
+.wallpapers-widget .icon {
+    font-size: 22px; /* Special size for wallpaper */
+    padding-bottom: 1px;
+}
 
 .wallpapers-widget {
-    padding: 0 6px 0 6px;
+    padding-left: 0px; /* Align text closer to icon */
+    border-top-right-radius: 9px;
+    border-bottom-right-radius: 9px;
 }
 
-.wallpapers-widget .icon {
-    font-size: 20px;
+/* ================================================================================
+   NETWORK WIDGETS - Tight spacing like icon+label in single widget
+   WiFi and NetSpeed with minimal gap between them
+   ================================================================================ */
+
+/* WiFi Widget - Acts as "icon" part */
+.wifi-widget {
+    padding-right: 0px; /* Minimal right padding */
 }
 
+.wifi-widget .icon {
+    padding-top: 1px; /* Slightly adjust icon position */
+    color: #f6c177;
+}
+
+/* Network Speed Widget - Acts as "label" part */
+.netspeed-widget {
+    padding-left: 0px; /* Minimal left padding to match icon-label spacing */
+}
+
+/* ================================================================================
+   AUDIO AND MEDIA WIDGETS
+   ================================================================================ */
+
+/* Volume Widget */
+
+/* Volume Widget */
+.volume-widget {
+    border-top-left-radius: 9px;
+    border-bottom-left-radius: 9px;
+    min-width: 70px; /* Minimum width to prevent bar shifting */
+    max-width: 70px; /* Maximum width to contain content */
+    overflow: hidden; /* Hide any overflow */
+    display: flex; /* Use flexbox for positioning */
+    align-items: center; /* Center vertically */
+}
+
+.volume-widget .icon {
+    color: #908caa;
+    margin-right: 0; /* Remove default margin */
+}
+
+.volume-widget .label {
+    margin-left: 0px; /* Make room for fixed icon */
+    text-align: left; /* Align text to left within remaining space */
+}
+
+/* Media Widget */
+.media-widget {
+    margin-right: 8px;
+    border-radius: 9px;
+}
+
+.media-widget .label {
+    background-color: rgba(0, 0, 0, 0.0);
+}
+
+.media-widget .btn {
+    color: #acb2c9;
+    padding: 0 4px;
+    margin: 4px 0;
+    font-family: Segoe Fluent Icons;
+}
+
+.media-widget .btn:hover {
+    color: #89b4fa;
+}
+
+.media-widget .btn.play {
+    background-color: #313244;
+    border-radius: 7px;
+    font-size: 16px;
+}
+
+.media-widget .btn.disabled:hover,
+.media-widget .btn.disabled {
+    color: #4e525c;
+    font-size: 12px;
+    background-color: rgba(0, 0, 0, 0);
+}
+
+/* ================================================================================
+   WEATHER AND TIME WIDGETS
+   ================================================================================ */
+
+/* Weather Widget */
+.weather-widget .icon {
+    /* Uses standard 16px size like other icons */
+    padding-right: -12px; /* Consistent right padding */
+}
+
+/* Weather icon variations */
+.weather-widget .icon.sunnyDay {
+    color: #f6c177;
+}
+
+.weather-widget .icon.clearNight {
+    color: #524f67;
+}
+
+.weather-widget .icon.cloudyDay {
+    color: #f6c177;
+}
+
+.weather-widget .icon.cloudyNight {
+    color: #6e6a86;
+}
+
+.weather-widget .icon.rainyDay {
+    color: #9ccfd8;
+}
+
+.weather-widget .icon.rainyNight {
+    color: #31748f;
+}
+
+.weather-card {
+    background-color: #191724;
+}
+
+/* Clock Widget */
+.clock-widget {
+    border-top-right-radius: 9px;
+    border-bottom-right-radius: 9px;
+}
+
+/* ================================================================================
+   POWER MENU POPUP
+   Modal dialog styling
+   ================================================================================ */
+.power-menu-popup {
+    background-color: rgba(25, 23, 36, 0.9);
+    border-radius: 12px;
+    border: 4px solid rgb(38, 35, 58);
+}
+
+.power-menu-popup .button {
+    padding: 0;
+    width: 240px;
+    height: 120px;
+    border-radius: 8px;
+    background-color: rgb(38, 35, 58);
+    font-family: "Segoe UI";
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    margin: 8px;
+}
+
+.power-menu-popup .button.hover {
+    background-color: rgb(82, 79, 103);
+    border: 1px solid rgb(82, 79, 103);
+}
+
+.power-menu-popup .button .label {
+    margin-bottom: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.95);
+    font-family: "Segoe UI";
+}
+
+.power-menu-popup .button .icon {
+    font-size: 48px;
+    padding-top: 8px;
+    color: rgba(255, 255, 255, 0.25);
+}
+
+.power-menu-popup .button.cancel .icon {
+    color: rgba(235, 111, 146, 0.55);
+}
+
+.power-menu-popup .button.cancel .label {
+    color: rgba(235, 111, 146, 0.95);
+}
+
+.power-menu-popup .button.shutdown .icon {
+    color: rgba(49, 116, 143, 0.55);
+}
+
+.power-menu-popup .button.shutdown .label {
+    color: rgba(49, 116, 143, 0.95);
+}
+
+.uptime {
+    font-size: 14px;
+    margin-bottom: 8px;
+    color: #ffffff;
+    font-weight: 600;
+    font-family: "Segoe UI";
+}
+
+/* ================================================================================
+   WALLPAPER GALLERY POPUP
+   ================================================================================ */
 .wallpapers-gallery-window {
     background-color: rgba(85, 42, 240, 0.01);
     border: 0;
     margin: 0;
 }
+
 .wallpapers-gallery-buttons {
-    background-color:rgba(255, 255, 255, 0);
+    background-color: rgba(255, 255, 255, 0);
     color: white;
     border: none;
-    font-size: 14px;
+    font-size: 20px;
     padding: 8px 0;
     border-radius: 8px;
-    margin:0 8px 8px 8px;
+    margin: 0 8px 8px 8px;
     width: 600px;
 }
+
 .wallpapers-gallery-buttons:hover {
-    background-color:rgba(255, 255, 255, 0.1)
+    background-color: rgba(255, 255, 255, 0.1);
 }
+
 .wallpapers-gallery-image {
     border: 4px solid transparent;
     border-radius: 10px;
 }
+
 .wallpapers-gallery-image:hover {
     border: 4px solid rgb(66, 68, 83);
 }
+
 .wallpapers-gallery-image.focused {
     border: 4px solid #89b4fa;
 }
-
-/* ================================================================================
-   NETWORK AND CONNECTIVITY
-   WiFi, network speed, and connectivity widgets
-   ================================================================================ */
-
-/* WiFi Widget - Wireless connection status */
-.wifi-widget {
-	padding: 0 2px 0 8px;
-	margin: 0;
-}
-
-.wifi-widget .icon {
-	color: #f6c177;
-	padding-left: 7px;
-}
-
-/* Network Speed Widget - Upload/download speeds - Very close to WiFi */
-.netspeed-widget {
-	margin: 0;
-	padding: 0 8px 0 0px;
-}
-
-/* ================================================================================
-   AUDIO AND MEDIA CONTROLS
-   Volume control and media player widgets
-   ================================================================================ */
-
-/* Volume Widget - Audio level control with extra padding for icons */
-.volume-widget {
-	border-top-left-radius: 9px;
-	border-bottom-left-radius: 9px;
-	padding: 0 12px 0 8px;
-}
-
-.volume-widget .icon {
-	color: #908caa;
-	margin: 1px -4px 0 0;
-	min-width: 20px;
-}
-
-/* Media Widget - Music/video player controls */
-.media-widget {
-	padding: 0;
-	padding-left: 2px;
-	margin: 0;
-	border-radius: 9px;
-	margin-right: 8px;
-}
-
-.media-widget .label {
-	background-color: rgba(0, 0, 0, 0.0);
-}
-
-.media-widget .btn {
-	color: #acb2c9;
-	padding: 0 3px;
-	margin: 4px 0;
-	font-family: Segoe Fluent Icons;
-}
-
-.media-widget .btn:hover {
-	color: #89b4fa;
-}
-
-.media-widget .btn.play {
-	background-color: #313244;
-	border-radius: 7px;
-	font-size: 16px;
-}
-
-.media-widget .btn.disabled:hover,
-.media-widget .btn.disabled {
-	color: #4e525c;
-	font-size: 12px;
-	background-color: rgba(0, 0, 0, 0);
-}
-
-/* ================================================================================
-   DATE, TIME, AND WEATHER
-   Clock and weather information widgets
-   ================================================================================ */
-
-/* Clock Widget - Date and time display */
-.clock-widget {
-	border-top-right-radius: 9px;
-	border-bottom-right-radius: 9px;
-}
-
-/* Weather Widget - Current conditions and forecast */
-.weather-widget .icon {
-	font-size: 20px;
-	margin: 0 -8px 1px 0;
-}
-
-/* Sunny day weather icon */
-.weather-widget .icon.sunnyDay {
-	font-size: 20px;
-	color: #f6c177;
-}
-
-/* Clear night weather icon */
-.weather-widget .icon.clearNight {
-	color: #524f67;
-	font-size: 20px;
-	margin: 1px 2px 0px 0;
-}
-
-/* Cloudy day weather icon */
-.weather-widget .icon.cloudyDay {
-	font-size: 20px;
-	color: #f6c177;
-}
-
-/* Cloudy night weather icon */
-.weather-widget .icon.cloudyNight {
-	font-size: 20px;
-	color: #6e6a86;
-}
-
-/* Rainy day weather icon */
-.weather-widget .icon.rainyDay {
-	font-size: 20px;
-	color: #9ccfd8;
-}
-
-/* Rainy night weather icon */
-.weather-widget .icon.rainyNight {
-	font-size: 20px;
-	color: #31748f;
-}
-
-.weather-card {
-	background-color: #191724;
-}
-
-/* ================================================================================
-   POWER AND SYSTEM CONTROL
-   Power menu, uptime, and system control widgets
-   ================================================================================ */
-
-/* Power Menu Widget - First widget in left group */
-.power-menu-widget {
-	padding: 0 6px 0 8px;
-	border-top-left-radius: 9px;
-	border-bottom-left-radius: 9px;
-	margin: 0 0 0 0;
-}
-
-.power-menu-widget .label {
-	color: #eb6f92;
-	font-size: 22px;
-    margin: 0 0 2 0;
-}
-
-/* Power Menu Popup - Modal dialog for power options */
-.power-menu-popup {
-	background-color: rgba(25, 23, 36, 0.9);
-	border-radius: 12px;
-	border: 4px solid rgb(38, 35, 58);
-}
-
-.power-menu-popup .button {
-	padding: 0;
-	width: 240px;
-	height: 120px;
-	border-radius: 8px;
-	background-color: rgb(38, 35, 58);
-	font-family: "Segoe UI";
-	color: white;
-	border: 1px solid rgba(255, 255, 255, 0.1);
-	margin: 8px;
-}
-
-.power-menu-popup .button.hover {
-	background-color: rgb(82, 79, 103);
-	border: 1px solid rgb(82, 79, 103);
-}
-
-.power-menu-popup .button .label {
-	margin-bottom: 8px;
-	font-size: 16px;
-	font-weight: 600;
-	color: rgba(255, 255, 255, 0.95);
-	font-family: "Segoe UI";
-}
-
-.power-menu-popup .button .icon {
-	font-size: 48px;
-	padding-top: 8px;
-	color: rgba(255, 255, 255, 0.25);
-}
-
-/* Cancel button styling */
-.power-menu-popup .button.cancel .icon {
-	color: rgba(235, 111, 146, 0.55);
-}
-
-.power-menu-popup .button.cancel .label {
-	color: rgba(235, 111, 146, 0.95);
-}
-
-/* Shutdown button styling */
-.power-menu-popup .button.shutdown .icon {
-	color: rgba(49, 116, 143, 0.55);
-}
-
-.power-menu-popup .button.shutdown .label {
-	color: rgba(49, 116, 143, 0.95);
-}
-
-/* Uptime Display - System uptime information */
-.uptime {
-	font-size: 14px;
-	margin-bottom: 10px;
-	color: #ffffff;
-	font-weight: 600;
-	font-family: "Segoe UI";
-}
-
-/* ================================================================================
-   EXTERNAL SERVICES AND INTEGRATIONS
-   Kanata and other service widgets
-   ================================================================================ */
-
-/* Kanata Widget - Keyboard layout manager */
-/* Kanata Widget - Last widget in left group */
-.kanata-widget {
-	border-top-right-radius: 9px;
-	border-bottom-right-radius: 9px;
-	margin: 0;
-}
-
-.kanata-widget .widget-container {
-}
-
-.kanata-widget .widget-container .label {
-	font-size: 12px;
-}
-
-.kanata-widget .widget-container .label.alt {
-}
-
-.kanata-widget .icon {
-	color: #31748f;
-	font-size: 17px;
-	margin: 0 4px 1px 0;
-}
-
-/* ================================================================================
-   GLOBAL ICON STYLES
-   Common icon styling and sizing
-   ================================================================================ */
-/* Global icon styles with better font rendering for special characters */
-.icon {
-	font-size: 16px;
-	padding-right: 6px;
-	vertical-align: middle;
-	display: inline-block;
-	line-height: 1;
-	min-width: 18px;
-	text-align: left;
-	font-feature-settings: "liga" 1, "calt" 1;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
-}
-
-

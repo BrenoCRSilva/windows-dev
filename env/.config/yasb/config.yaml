@@ -79,7 +79,7 @@ widgets:
       label_alt: ""
       label_no_window: "\udb80\udedc"
       label_icon: true
-      label_icon_size: 14
+      label_icon_size: 20 
     max_length: 56
     max_length_ellipsis: "..."
     monitor_exclusive: true

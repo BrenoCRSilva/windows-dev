@@ -50,6 +50,10 @@
 		  {
 			"kind": "Exe",
 			"id": "zen.exe"
+		  },
+		  {
+			"kind": "Exe",
+			"id": "firefox.exe"
 		  }
 		]
         },
@@ -73,6 +77,16 @@
           "layout": "BSP",
 		  "workspace_rules":[
 		  {
+			"kind": "Exe",
+			"id": "explorer.exe"
+		  }
+		]
+        },
+        {
+          "name": "V",
+          "layout": "BSP",
+		  "workspace_rules":[
+		  {
 			"kind": "Title",
 			"id": "Steam",
 			"matching_strategy": "Contains"
@@ -82,16 +96,6 @@
 			"id": "Xbox",
 			"matching_strategy": "Contains"
 		  },
-		]
-        },
-        {
-          "name": "V",
-          "layout": "BSP",
-		  "workspace_rules":[
-		  {
-			"kind": "Exe",
-			"id": "explorer.exe"
-		  }
 		]
         },
         {
