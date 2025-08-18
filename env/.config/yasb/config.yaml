@@ -77,7 +77,7 @@ widgets:
     options:
       label: ""
       label_alt: ""
-      label_no_window: "\udb80\udedc"
+      label_no_window: " "
       label_icon: true
       label_icon_size: 20 
     max_length: 56
@@ -244,7 +244,7 @@ widgets:
           - " "  # Icon for muted
           - " "  # Icon for 0-10% volume
           - " "  # Icon for 11-30% volume
-          - " "  # Icon for 31-60% volume
+          - " "  # Icon for 31-60% volume
           - " "  # Icon for 61-100% volume
         callbacks:
           on_right: "exec cmd.exe /c start ms-settings:sound"

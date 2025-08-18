@@ -40,13 +40,16 @@
 
 .container-left {
     margin: 0;
-    padding: 0 0 0 4px;
+    padding-left: 2px;
 }
 
-.container-center,
-.container-right {
+.container-center {
     margin: 0;
     padding: 0;
+}
+.container-right {
+    margin: 0;
+    padding-right: 1px;
 }
 
 /* ================================================================================
@@ -175,6 +178,7 @@
 }
 
 .active-window-widget .label {
+    color: "#3e8fb0";
     font-size: 20px;
     padding: 0;
 }

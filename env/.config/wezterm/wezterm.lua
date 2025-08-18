@@ -12,7 +12,7 @@ c.colors = {
 	cursor_bg = "#808080",
 	cursor_fg = "#0c0b12",
 }
-c.font = wezterm.font("FiraCode Nerd Font Mono", { weight = "Light" })
+c.font = wezterm.font("FiraCode Nerd Font", { weight = "Light" })
 c.font_rules = {
 	{
 		intensity = "Bold",
