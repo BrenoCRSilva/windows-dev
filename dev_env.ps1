@@ -68,6 +68,7 @@ Copy-ConfigDir "$scriptDir\env\.config\komorebi" "$configHome\komorebi"
 Copy-ConfigDir "$scriptDir\env\.config\yasb" "$configHome\yasb"
 Copy-ConfigDir "$scriptDir\env\.config\windhawk" "$configHome\windhawk"
 Copy-ConfigDir "$scriptDir\env\.config\wallpapers" "$configHome\wallpapers"
+Copy-ConfigDir "$scriptDir\env\.config\flow-launcher" "$configHome\flow-launcher"
 
 # Copy config files
 Copy-ConfigFile "$scriptDir\env\.config\whkdrc" "$configHome\whkdrc"

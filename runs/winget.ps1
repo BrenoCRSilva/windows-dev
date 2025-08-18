@@ -6,6 +6,7 @@ winget install LGUG2Z.whkd
 winget install --id AmN.yasb
 winget install --id Ookla.Speedtest.CLI -e
 winget install RamenSoftware.Windhawk
+winget install "Flow Launcher"
 
 # Terminal and shell
 winget install wez.wezterm

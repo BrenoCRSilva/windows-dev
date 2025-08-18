@@ -7,6 +7,7 @@ if [[ $EUID -ne 0 ]]; then
     exit 1
 fi
 
+echo "[*] Enter root password:"
 passwd
 
 # Update system
